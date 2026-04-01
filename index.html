@@ -23,6 +23,129 @@
     <!-- Custom styles for this template -->
     <link href="css/resume.min.css" rel="stylesheet">
 
+    <!-- Experience card styles -->
+    <style>
+      html, body {
+        overflow-y: scroll !important;
+        scrollbar-width: auto !important;
+      }
+      .exp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .exp-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+      .exp-card:hover {
+        box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+      }
+      .exp-card-header {
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+      }
+      .exp-card-header img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .exp-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.58) 100%);
+        pointer-events: none;
+      }
+      .exp-card-title {
+        position: absolute;
+        bottom: 12px;
+        left: 16px;
+        right: 40px;
+      }
+      .exp-card-title p { margin: 0; }
+      .exp-card-title .job-title {
+        color: #fff;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+      .exp-card-title .company {
+        color: rgba(255,255,255,0.75);
+        font-size: 13px;
+        margin-top: 4px;
+      }
+      .exp-chevron {
+        position: absolute;
+        bottom: 16px;
+        right: 14px;
+        transition: transform 0.3s ease;
+      }
+      .exp-card-body {
+        max-height: 320px;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.3s ease;
+        opacity: 1;
+      }
+      .exp-card-body.collapsed {
+        max-height: 0 !important;
+        opacity: 0;
+      }
+      .exp-card-inner {
+        padding: 16px;
+      }
+      .exp-card-inner p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.7;
+        margin: 0 0 14px;
+      }
+      .exp-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .exp-tag-primary {
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: #e8f0fe;
+        color: #1a56db;
+        border: 1px solid #c3d4fb;
+      }
+      .exp-tag-secondary {
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 6px;
+        background: #f3f4f6;
+        color: #555;
+        border: 1px solid #e0e0e0;
+      }
+      .exp-github-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: #333;
+        text-decoration: none;
+        border: 1px solid #d0d0d0;
+        border-radius: 8px;
+        padding: 6px 12px;
+        background: #fafafa;
+        transition: background 0.2s, color 0.2s;
+      }
+      .exp-github-link:hover {
+        background: #f0f0f0;
+        color: #000;
+        text-decoration: none;
+      }
+    </style>
+
   </head>
 
   <body id="page-top">
@@ -69,7 +192,7 @@
             <span class="text-primary">Syamsul Bahri</span>
           </h1>
           <div class="subheading mb-5">Jakarta Timut, · +62 852 4326 3183 ·
-            <a href="mailto:name@email.com">syamsulbahri336@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#f29c939f97b2979f939b9edc919d9f"><span class="__cf_email__" data-cfemail="becdc7dfd3cdcbd2dcdfd6ccd78d8d88fed9d3dfd7d290ddd1d3">[email&#160;protected]</span></a>
           </div>
           <p class="mb-5">Data Analyst dengan latar belakang Statistika dan pengalaman dalam analisis data, data cleaning, serta pembuatan dashboard. Terbiasa menggunakan Python, SQL, Excel, dan Power BI untuk menghasilkan insight yang mendukung pengambilan keputusan bisnis.</p>
           <ul class="list-inline list-social-icons mb-0">
@@ -97,52 +220,131 @@
         <div class="my-auto">
           <h2 class="mb-5">Experience</h2>
 
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Senior Web Developer</h3>
-              <div class="subheading mb-3">Intelitec Solutions</div>
-              <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">March 2013 - Present</span>
-            </div>
-          </div>
+          <div class="exp-grid">
 
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Web Developer</h3>
-              <div class="subheading mb-3">Intelitec Solutions</div>
-              <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+            <!-- Card 1: Senior Web Developer -->
+            <div class="exp-card">
+              <div class="exp-card-header" onclick="toggleExpCard(this)">
+                <img src="https://www.geckoboard.com/uploads/sales-pipeline-dashboard-example-geckoboard.png" alt="Senior Web Developer preview">
+                <div class="exp-card-overlay"></div>
+                <div class="exp-card-title">
+                  <p class="job-title">Senior Web Developer</p>
+                  <p class="company">Intelitec Solutions</p>
+                </div>
+                <div class="exp-chevron">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6l4 4 4-4" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="exp-card-body">
+                <div class="exp-card-inner">
+                  <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.</p>
+                  <div class="exp-tags">
+                    <span class="exp-tag-primary">Web Dev</span>
+                    <span class="exp-tag-secondary">Leadership</span>
+                    <span class="exp-tag-secondary">Cloud</span>
+                  </div>
+                  <a href="https://github.com/Syamsul336" target="_blank" class="exp-github-link">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Lihat di GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">December 2011 - March 2013</span>
-            </div>
-          </div>
 
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Junior Web Designer</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
+            <!-- Card 2: Web Developer -->
+            <div class="exp-card">
+              <div class="exp-card-header" onclick="toggleExpCard(this)">
+                <img src="https://www.geckoboard.com/uploads/sales-pipeline-dashboard-example-geckoboard.png" alt="Web Developer preview">
+                <div class="exp-card-overlay"></div>
+                <div class="exp-card-title">
+                  <p class="job-title">Web Developer</p>
+                  <p class="company">Intelitec Solutions</p>
+                </div>
+                <div class="exp-chevron">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6l4 4 4-4" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="exp-card-body">
+                <div class="exp-card-inner">
+                  <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop.</p>
+                  <div class="exp-tags">
+                    <span class="exp-tag-primary">DevOps</span>
+                    <span class="exp-tag-secondary">Frontend</span>
+                  </div>
+                  <a href="https://github.com/Syamsul336" target="_blank" class="exp-github-link">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Lihat di GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">July 2010 - December 2011</span>
-            </div>
-          </div>
 
-          <div class="resume-item d-flex flex-column flex-md-row">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Web Design Intern</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+            <!-- Card 3: Junior Web Designer -->
+            <div class="exp-card">
+              <div class="exp-card-header" onclick="toggleExpCard(this)">
+                <img src="https://www.geckoboard.com/uploads/sales-pipeline-dashboard-example-geckoboard.png" alt="Junior Web Designer preview">
+                <div class="exp-card-overlay"></div>
+                <div class="exp-card-title">
+                  <p class="job-title">Junior Web Designer</p>
+                  <p class="company">Shout! Media Productions</p>
+                </div>
+                <div class="exp-chevron">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6l4 4 4-4" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="exp-card-body">
+                <div class="exp-card-inner">
+                  <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality.</p>
+                  <div class="exp-tags">
+                    <span class="exp-tag-primary">UI Design</span>
+                    <span class="exp-tag-secondary">Media</span>
+                  </div>
+                  <a href="https://github.com/Syamsul336" target="_blank" class="exp-github-link">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Lihat di GitHub
+                  </a>
+                </div>
+              </div>
             </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">September 2008 - June 2010</span>
-            </div>
-          </div>
 
+            <!-- Card 4: Web Design Intern -->
+            <div class="exp-card">
+              <div class="exp-card-header" onclick="toggleExpCard(this)">
+                <img src="https://www.geckoboard.com/uploads/sales-pipeline-dashboard-example-geckoboard.png" alt="Web Design Intern preview">
+                <div class="exp-card-overlay"></div>
+                <div class="exp-card-title">
+                  <p class="job-title">Web Design Intern</p>
+                  <p class="company">Shout! Media Productions</p>
+                </div>
+                <div class="exp-chevron">
+                  <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+                    <path d="M4 6l4 4 4-4" stroke="rgba(255,255,255,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="exp-card-body">
+                <div class="exp-card-inner">
+                  <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
+                  <div class="exp-tags">
+                    <span class="exp-tag-primary">Design</span>
+                    <span class="exp-tag-secondary">Marketing</span>
+                  </div>
+                  <a href="https://github.com/Syamsul336" target="_blank" class="exp-github-link">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    Lihat di GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end exp-grid -->
         </div>
-
       </section>
 
       <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
@@ -288,6 +490,23 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
+
+    <!-- Experience card toggle -->
+    <script>
+      function toggleExpCard(header) {
+        var card = header.parentElement;
+        var body = card.querySelector('.exp-card-body');
+        var chevron = header.querySelector('.exp-chevron');
+        if (!body) return;
+        if (body.classList.contains('collapsed')) {
+          body.classList.remove('collapsed');
+          chevron.style.transform = 'rotate(0deg)';
+        } else {
+          body.classList.add('collapsed');
+          chevron.style.transform = 'rotate(-90deg)';
+        }
+      }
+    </script>
 
   </body>
 
